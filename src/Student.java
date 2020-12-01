@@ -5,7 +5,7 @@ public class Student {
   // TODO implement Student class according to the instructions provided in the README.md file
 
   public Student(String name) {
-    //TODO initialize name
+    // TODO initialize name
   }
 
   public static double getAvgRating() {
