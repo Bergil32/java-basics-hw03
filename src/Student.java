@@ -1,50 +1,55 @@
 public class Student {
-  int rating;
+  private int rating;
   private String name;
 
-  // TODO implement Student class according to the instructions provided in the README.md file
+  public Student() {
+    Students.addStudent(this);
+  }
 
   public Student(String name) {
-    //TODO initialize name
+    this();
+    this.name = name;
   }
 
-  public static double getAvgRating() {
-    // TODO return average rating of all students
-    return 0;
+  public Student(String name, int rating) {
+    this(name);
+    this.rating = rating;
   }
 
-  public String getName() {
+  static double getAvgRating() {
+    return Students.getAverageRating();
+  }
+
+  String getName() {
     return name;
   }
 
-  public void setName(String name) {
-    // TODO set student's name
+  void setName(String name) {
+    this.name = name;
   }
 
-  public int getRating() {
+  int getRating() {
     return rating;
   }
 
-  public void setRating(int rating) {
-    // TODO initialize rating;
+  void setRating(int rating) {
+    this.rating = rating;
   }
 
-  public boolean betterStudent(Student student) {
-    // TODO return the result of comparing this.student's rating with the student's rating
-    return false;
+  boolean betterStudent(Student student) {
+    return this.rating > student.rating;
   }
 
-  public void changeRating(int rating) {
-    // TODO change this student's rating and average rating of all students
+  void changeRating(int rating) {
+    this.rating = rating;
   }
 
-  public static void removeStudent(Student student) {
-    // TODO remove student
+  static void removeStudent(Student student) {
+    Students.removeStudent(student);
   }
 
   @Override
   public String toString() {
-    // TODO return String with name and rating of this student
-    return "";
+    return String.format("Name: %s, rating: %d", this.name, this.rating);
   }
 }
