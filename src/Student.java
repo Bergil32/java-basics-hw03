@@ -1,9 +1,11 @@
 public class Student {
   private int rating;
   private String name;
+  private static double totalRating;
+  private static int counter;
 
   public Student() {
-    Students.addStudent(this);
+    counter++;
   }
 
   public Student(String name) {
@@ -11,41 +13,41 @@ public class Student {
     this.name = name;
   }
 
-  public Student(String name, int rating) {
-    this(name);
-    this.rating = rating;
+  public static double getAvgRating() {
+    if (counter == 0) return 0;
+    return totalRating / counter;
   }
 
-  static double getAvgRating() {
-    return Students.getAverageRating();
-  }
-
-  String getName() {
-    return name;
-  }
-
-  void setName(String name) {
+  public void setName(String name) {
     this.name = name;
   }
 
-  int getRating() {
+  public String getName() {
+    return name;
+  }
+
+  public void setRating(int rating) {
+    this.rating = rating;
+    totalRating += rating;
+  }
+
+  public int getRating() {
     return rating;
   }
 
-  void setRating(int rating) {
+  public boolean betterStudent(Student student) {
+    return rating >= student.getRating();
+  }
+
+  public void changeRating(int rating) {
+    totalRating -= this.rating;
     this.rating = rating;
+    totalRating += rating;
   }
 
-  boolean betterStudent(Student student) {
-    return this.rating > student.rating;
-  }
-
-  void changeRating(int rating) {
-    this.rating = rating;
-  }
-
-  static void removeStudent(Student student) {
-    Students.removeStudent(student);
+  public static void removeStudent(Student student) {
+    counter--;
+    totalRating -= student.getRating();
   }
 
   @Override
